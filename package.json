@@ -1,0 +1,21 @@
+{
+  "name": "plass-platform",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @plass/web",
+    "dev:api": "npm run dev --workspace @plass/api",
+    "build": "npm run build --workspace @plass/web && npm run build --workspace @plass/api",
+    "lint": "npm run lint --workspace @plass/web",
+    "db:generate": "npm run prisma:generate --workspace @plass/api",
+    "db:migrate": "npm run prisma:migrate --workspace @plass/api",
+    "db:seed": "npm run seed --workspace @plass/api"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
