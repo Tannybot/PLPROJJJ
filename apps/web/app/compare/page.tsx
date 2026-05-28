@@ -7,6 +7,7 @@ import { LanguageRadar } from "@/components/plass/charts";
 import { ProgressMeter } from "@/components/plass/progress-meter";
 import { ScoreHeatmap } from "@/components/plass/score-heatmap";
 import { ScenarioVisualizer } from "@/components/plass/scenario-visualizer";
+import { SuitabilityAdvisor } from "@/components/plass/suitability-advisor";
 import { Card, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -55,6 +56,9 @@ export default function ComparePage() {
             </tbody>
           </table>
         </Card>
+      </div>
+      <div className="mt-6">
+        <SuitabilityAdvisor />
       </div>
       <div className="mt-6">
         <ScoreHeatmap languages={filtered} />

@@ -6,6 +6,7 @@ const links = [
   ["Dashboard", "/dashboard"],
   ["Simulation", "/simulation"],
   ["Compare", "/compare"],
+  ["Advisor", "/compare#advisor"],
   ["Knowledge", "/knowledge"],
   ["Admin", "/admin"]
 ];

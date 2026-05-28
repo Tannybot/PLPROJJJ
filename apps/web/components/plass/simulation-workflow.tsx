@@ -5,12 +5,10 @@ import { motion } from "framer-motion";
 import { BookOpen, Download, History, Loader2, Save, WandSparkles } from "lucide-react";
 import { jsPDF } from "jspdf";
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { AchievementPanel } from "@/components/plass/achievement-panel";
-import { AiAnalysisPanel } from "@/components/plass/ai-analysis-panel";
+import { BytecodeExecutionLab } from "@/components/plass/bytecode-execution-lab";
 import { SuitabilityBars } from "@/components/plass/charts";
 import { EducationalInsight } from "@/components/plass/educational-insight";
 import { ProgressMeter } from "@/components/plass/progress-meter";
-import { ScenarioVisualizer } from "@/components/plass/scenario-visualizer";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -108,8 +106,9 @@ export function SimulationWorkflow() {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[420px_1fr]">
-      <div className="space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-6">
+      <div className="grid w-full gap-6 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)]">
+      <div className="w-full space-y-6">
         <Card>
           <div className="flex items-center justify-between">
             <div>
@@ -135,11 +134,9 @@ export function SimulationWorkflow() {
           </form>
         </Card>
 
-        <AiAnalysisPanel active={isLoading} />
-        <AchievementPanel compact />
       </div>
 
-      <div className="space-y-6">
+      <div className="w-full space-y-6">
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
           <Card className="border-cyan/30">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -171,6 +168,13 @@ export function SimulationWorkflow() {
 
         <EducationalInsight seed={factSeed} />
 
+      </div>
+      </div>
+
+      <BytecodeExecutionLab />
+
+      <div className="space-y-6">
+
         <Card>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <CardTitle>Recommendation Ranking</CardTitle>
@@ -200,8 +204,6 @@ export function SimulationWorkflow() {
             </Card>
           ))}
         </div>
-
-        <ScenarioVisualizer />
 
         <Card>
           <div className="flex items-center gap-2">
