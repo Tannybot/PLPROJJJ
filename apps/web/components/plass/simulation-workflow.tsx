@@ -2,7 +2,7 @@
 
 import { languageProfiles, Recommendation, scoreLanguages } from "@plass/recommendation";
 import { motion } from "framer-motion";
-import { BookOpen, Download, History, Loader2, Save, WandSparkles } from "lucide-react";
+import { BookOpen, Bot, Download, Gamepad2, GraduationCap, History, Loader2, Save, ShoppingCart, WandSparkles } from "lucide-react";
 import { jsPDF } from "jspdf";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { BytecodeExecutionLab } from "@/components/plass/bytecode-execution-lab";
@@ -35,6 +35,65 @@ const initialState: FormState = {
   developmentSpeed: 8,
   deploymentPlatform: "Cloud / Docker / Kubernetes"
 };
+
+const scenarioPresets: Array<{ label: string; icon: typeof Gamepad2; values: FormState }> = [
+  {
+    label: "Game",
+    icon: Gamepad2,
+    values: {
+      projectType: "Online game system",
+      targetUsers: 50000,
+      scalability: 8,
+      security: 7,
+      performance: 10,
+      budget: "high",
+      developmentSpeed: 7,
+      deploymentPlatform: "Desktop / Web Game"
+    }
+  },
+  {
+    label: "AI Chatbot",
+    icon: Bot,
+    values: {
+      projectType: "AI chatbot with analytics",
+      targetUsers: 25000,
+      scalability: 8,
+      security: 8,
+      performance: 8,
+      budget: "medium",
+      developmentSpeed: 9,
+      deploymentPlatform: "Cloud API"
+    }
+  },
+  {
+    label: "E-commerce",
+    icon: ShoppingCart,
+    values: {
+      projectType: "E-commerce website",
+      targetUsers: 100000,
+      scalability: 9,
+      security: 10,
+      performance: 8,
+      budget: "medium",
+      developmentSpeed: 7,
+      deploymentPlatform: "Web / Cloud"
+    }
+  },
+  {
+    label: "School",
+    icon: GraduationCap,
+    values: {
+      projectType: "School management system",
+      targetUsers: 8000,
+      scalability: 6,
+      security: 8,
+      performance: 6,
+      budget: "low",
+      developmentSpeed: 9,
+      deploymentPlatform: "Web"
+    }
+  }
+];
 
 export function SimulationWorkflow() {
   const [form, setForm] = useState<FormState>(initialState);
@@ -93,6 +152,10 @@ export function SimulationWorkflow() {
     setForm((current) => ({ ...current, [key]: value }));
   }
 
+  function applyPreset(values: FormState) {
+    setForm(values);
+  }
+
   function downloadPdf() {
     const doc = new jsPDF();
     doc.setFontSize(18);
@@ -108,7 +171,7 @@ export function SimulationWorkflow() {
   return (
     <div className="mx-auto w-full max-w-6xl space-y-6">
       <div className="grid w-full gap-6 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)]">
-      <div className="w-full space-y-6">
+        <div className="w-full space-y-6">
         <Card>
           <div className="flex items-center justify-between">
             <div>
@@ -116,6 +179,22 @@ export function SimulationWorkflow() {
               <CardDescription>Weighted research criteria used by the scoring engine.</CardDescription>
             </div>
             <span className="rounded-md bg-cyan/10 px-2 py-1 text-xs text-cyan">{stepHealth}% ready</span>
+          </div>
+          <div className="mt-5 grid grid-cols-2 gap-2">
+            {scenarioPresets.map((preset) => {
+              const Icon = preset.icon;
+              return (
+                <button
+                  key={preset.label}
+                  type="button"
+                  onClick={() => applyPreset(preset.values)}
+                  className="flex items-center gap-2 rounded-md border border-border bg-white/5 px-3 py-2 text-left text-sm transition hover:border-cyan/40 hover:bg-cyan/10"
+                >
+                  <Icon className="h-4 w-4 text-cyan" />
+                  {preset.label}
+                </button>
+              );
+            })}
           </div>
           <form onSubmit={submit} className="mt-6 space-y-4">
             <label className="block text-sm text-muted">Project type<Input value={form.projectType} onChange={(e) => update("projectType", e.target.value)} className="mt-2" /></label>
@@ -134,9 +213,9 @@ export function SimulationWorkflow() {
           </form>
         </Card>
 
-      </div>
+        </div>
 
-      <div className="w-full space-y-6">
+        <div className="w-full space-y-6">
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
           <Card className="border-cyan/30">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -168,13 +247,12 @@ export function SimulationWorkflow() {
 
         <EducationalInsight seed={factSeed} />
 
-      </div>
+        </div>
       </div>
 
       <BytecodeExecutionLab />
 
       <div className="space-y-6">
-
         <Card>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <CardTitle>Recommendation Ranking</CardTitle>

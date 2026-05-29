@@ -142,7 +142,7 @@ export function BytecodeExecutionLab() {
           <p className="text-sm text-amber">Execution Simulation</p>
           <CardTitle className="mt-1 text-2xl">Bytecode & Runtime Flow Lab</CardTitle>
           <CardDescription>
-            Convert sample source code into pseudo-bytecode, inspect opcode instructions, and compare interpreted versus compiled execution behavior.
+            Convert sample source code into pseudo-bytecode, inspect opcode instructions, and trace how execution moves through the program.
           </CardDescription>
         </div>
         <div className="rounded-md border border-border bg-white/5 px-3 py-2 text-sm text-muted">
@@ -187,7 +187,7 @@ export function BytecodeExecutionLab() {
 
             <Button type="button" onClick={() => setSubmittedSourceCode(sourceCode)} className="w-full">
               <Play className="h-4 w-4" />
-              Submit
+              Submit Source
             </Button>
           </div>
 
