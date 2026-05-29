@@ -4,9 +4,6 @@ import { languageProfiles } from "@plass/recommendation";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { LanguageRadar } from "@/components/plass/charts";
-import { ProgressMeter } from "@/components/plass/progress-meter";
-import { ScoreHeatmap } from "@/components/plass/score-heatmap";
-import { ScenarioVisualizer } from "@/components/plass/scenario-visualizer";
 import { SuitabilityAdvisor } from "@/components/plass/suitability-advisor";
 import { Card, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -59,20 +56,6 @@ export default function ComparePage() {
       </div>
       <div className="mt-6">
         <SuitabilityAdvisor />
-      </div>
-      <div className="mt-6">
-        <ScoreHeatmap languages={filtered} />
-      </div>
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_380px]">
-        <ScenarioVisualizer />
-        <Card>
-          <CardTitle>Live Metric Animation</CardTitle>
-          <div className="mt-5 space-y-5">
-            {filtered.slice(0, 4).map((language) => (
-              <ProgressMeter key={language.slug} label={`${language.name} ecosystem`} value={language.scores.community} color={language.color} />
-            ))}
-          </div>
-        </Card>
       </div>
     </main>
   );

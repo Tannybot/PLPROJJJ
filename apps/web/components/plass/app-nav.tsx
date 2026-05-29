@@ -7,8 +7,7 @@ const links = [
   ["Simulation", "/simulation"],
   ["Compare", "/compare"],
   ["Advisor", "/compare#advisor"],
-  ["Knowledge", "/knowledge"],
-  ["Admin", "/admin"]
+  ["Knowledge", "/knowledge"]
 ];
 
 export function AppNav() {
